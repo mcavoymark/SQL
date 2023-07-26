@@ -1,0 +1,16 @@
+#lesson 22
+SELECT nationality, COUNT(*) FROM characters GROUP BY nationality HAVING COUNT(id) > 1;
+#lesson 24
+SELECT COALESCE(alter_ego, name) FROM characters;
+#lesson 26
+SELECT * FROM movies INNER JOIN actors ON movies.lead_actor_id = actors.actor_id;
+#lesson 29
+SELECT name FROM cap_actors UNION select name FROM avengers_actors;
+#lesson 30
+SELECT * FROM movies a INNER JOIN movie_actors_link b ON a.id = b.movie_id INNER JOIN actors c ON b.actor_id = c.actor_id;
+#lesson 31
+SELECT a.title as movie_name, c.name as actor_name 
+FROM movies a INNER JOIN movie_actors_link b ON a.id = b.movie_id INNER JOIN actors c ON b.actor_id = c.actor_id;
+#lesson 32
+SELECT a.name as character_name, b.name as partner_name
+FROM characters a inner join characters b on a.partner_id=b.id;
