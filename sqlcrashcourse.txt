@@ -1,16 +1,53 @@
+#lesson 2
+SELECT * FROM characters
+#lesson 3
+SELECT name FROM characters
+#lesson 4
+SELECT * FROM characters WHERE eyes='red'
+#lesson 5
+SELECT * FROM characters WHERE height>180
+#lesson 6
+SELECT * FROM characters WHERE gender='Female' and hair='Black'
+#lesson 8
+SELECT * FROM characters WHERE hair IN ('Black','Brown')
+#lesson 11
+SELECT * FROM movies WHERE release_date < '2012-12-31'
+#lesson 12
+SELECT DISTINCT nationality FROM characters
+#lesson 14
+SELECT name,
+CASE
+	WHEN species = 'Human' THEN 'HUMAN'
+	ELSE 'ALIEN'
+END
+FROM characters
+#lesson 16
+SELECT COUNT(*) FROM characters
+#lesson 17
+SELECT COUNT(*) FROM characters WHERE nationality='Asgardian'
+#lesson 18
+SELECT SUM(budget) FROM movies
+#lesson 19
+SELECT AVG(budget) FROM movies
+#lesson 21
+SELECT nationality, COUNT(*) FROM characters GROUP BY nationality
 #lesson 22
-SELECT nationality, COUNT(*) FROM characters GROUP BY nationality HAVING COUNT(id) > 1;
+SELECT nationality, COUNT(*) FROM characters GROUP BY nationality HAVING COUNT(*)>1
 #lesson 24
-SELECT COALESCE(alter_ego, name) FROM characters;
+SELECT COALESCE(alter_ego, name) FROM characters 
 #lesson 26
-SELECT * FROM movies INNER JOIN actors ON movies.lead_actor_id = actors.actor_id;
+SELECT * FROM movies INNER JOIN actors ON actors.actor_id = movies.lead_actor_id
 #lesson 29
-SELECT name FROM cap_actors UNION select name FROM avengers_actors;
+SELECT name FROM cap_actors UNION SELECT name FROM avengers_actors
 #lesson 30
-SELECT * FROM movies a INNER JOIN movie_actors_link b ON a.id = b.movie_id INNER JOIN actors c ON b.actor_id = c.actor_id;
+SELECT * FROM movies a
+INNER JOIN movie_actors_link b ON a.id = b.movie_id
+INNER JOIN actors c ON b.actor_id = c.actor_id
 #lesson 31
-SELECT a.title as movie_name, c.name as actor_name 
-FROM movies a INNER JOIN movie_actors_link b ON a.id = b.movie_id INNER JOIN actors c ON b.actor_id = c.actor_id;
+SELECT a.title movie_name, c.name actor_name FROM movies a
+INNER JOIN movie_actors_link b ON a.id = b.movie_id
+INNER JOIN actors c ON b.actor_id = c.actor_id
 #lesson 32
-SELECT a.name as character_name, b.name as partner_name
-FROM characters a inner join characters b on a.partner_id=b.id;
+SELECT a.name character_name, b.name partner_name FROM characters a
+INNER JOIN characters b ON a.partner_id = b.id
+
