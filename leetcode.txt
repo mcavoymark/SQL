@@ -1,14 +1,14 @@
---175. Combine Two Tables
+#175. Combine Two Tables
 SELECT P.firstName, P.lastName, A.city, A.state
 FROM Person P
 LEFT JOIN Address A USING (personId)
 
---176. Second Highest Salary
+#176. Second Highest Salary
 SELECT max(salary) AS SecondHighestSalary
 FROM Employee
 WHERE salary < (SELECT max(salary) FROM Employee)
 
---177. Nth Highest Salary
+#177. Nth Highest Salary
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
   SET N = N - 1;
@@ -17,3 +17,12 @@ BEGIN
       SELECT DISTINCT salary FROM Employee ORDER BY salary DESC LIMIT N, 1
   );
 END
+
+#178. Rank Scores
+SELECT score, DENSE_RANK() OVER (ORDER BY score DESC) AS 'rank'
+FROM Scores
+
+#180. Consecutive Numbers
+SELECT DISTINCT num AS ConsecutiveNums
+FROM Logs
+WHERE (id+1,num) in (SELECT * FROM Logs) and (id+2,num) in (SELECT * FROM Logs)
