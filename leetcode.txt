@@ -26,3 +26,8 @@ FROM Scores
 SELECT DISTINCT num AS ConsecutiveNums
 FROM Logs
 WHERE (id+1,num) in (SELECT * FROM Logs) and (id+2,num) in (SELECT * FROM Logs)
+
+181. Employees Earning More Than Their Managers
+SELECT e.name AS 'Employee'
+FROM Employee e, Employee m
+WHERE e.ManagerId = m.Id and e.salary > m.salary
