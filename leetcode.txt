@@ -14,7 +14,9 @@ BEGIN
   SET N = N - 1;
   RETURN (
       # Write your MySQL query statement below.
-      SELECT DISTINCT salary FROM Employee ORDER BY salary DESC LIMIT N, 1
+      SELECT DISTINCT salary 
+	  FROM Employee 
+	  ORDER BY salary DESC LIMIT N, 1
   );
 END
 
@@ -27,7 +29,23 @@ SELECT DISTINCT num AS ConsecutiveNums
 FROM Logs
 WHERE (id+1,num) in (SELECT * FROM Logs) and (id+2,num) in (SELECT * FROM Logs)
 
-181. Employees Earning More Than Their Managers
+#181. Employees Earning More Than Their Managers
 SELECT e.name AS 'Employee'
 FROM Employee e, Employee m
-WHERE e.ManagerId = m.Id and e.salary > m.salary
+WHERE e.ManagerId = m.id and e.salary > m.salary
+
+#182. Duplicate Emails
+SELECT email AS 'Email'
+FROM Person
+GROUP BY email HAVING count(*)>1
+
+#183. Customers Who Never Order
+SELECT name AS 'Customers'
+FROM Customers
+WHERE id NOT IN (SELECT customerID FROM ORDERS)
+
+#184. Department Highest Salary
+SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary
+FROM Department d, Employee e
+WHERE departmentID = d.id
+AND salary=(SELECT MAX(salary) FROM Employee WHERE departmentID = d.id)
