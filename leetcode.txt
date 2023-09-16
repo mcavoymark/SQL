@@ -51,8 +51,13 @@ WHERE departmentID = d.id
 AND salary=(SELECT MAX(salary) FROM Employee WHERE departmentID = d.id)
 
 #185. Department Top Three Salaries
-SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary
+SELECT d.name AS Department, e.name AS Employee, salary AS Salary
 FROM Department d, Employee e
 WHERE departmentId=d.id
 AND (SELECT COUNT(DISTINCT salary) FROM Employee WHERE departmentId=d.id AND salary>e.salary)<3
+
+#196. Delete Duplicate Emails
+DELETE p1
+FROM Person p1, Person p2
+WHERE p1.email = p2.email AND p1.id > p2.id
 
